@@ -13,7 +13,7 @@ export default function GoGame() {
 
   return (
     <BoardContext.Provider value={{board, onMove}}>
-      <Goban />
+      <Goban reversed={true} />
     </BoardContext.Provider>
   )
 }

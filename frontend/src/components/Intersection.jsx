@@ -2,10 +2,11 @@ import React, { useContext } from 'react'
 import { BoardContext } from '../context/boardContext'
 import '../css/Intersection.css'
 
-export default function Intersection({row, col, color}) {
+export default function Intersection({row, col, i, j, color}) {
   const {board, onMove} = useContext(BoardContext)
 
   const handleClick = (i, j) => {
+    console.log(i, j)
     if (board.isLegal(i, j)) {
       board.move(i, j)
       onMove()
@@ -23,6 +24,6 @@ export default function Intersection({row, col, color}) {
   }
 
   return (
-    <div onClick={() => handleClick(row, col)} className={classes} style={style}/>
+    <div onClick={() => handleClick(i, j)} className={classes} style={style}/>
   )
 }
