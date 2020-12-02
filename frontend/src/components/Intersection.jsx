@@ -6,7 +6,8 @@ export default function Intersection({row, col, color}) {
   const {board, onMove} = useContext(BoardContext)
 
   const handleClick = (i, j) => {
-    if (board.move(i, j)) {
+    if (board.isLegal(i, j)) {
+      board.move(i, j)
       onMove()
     }
   }
@@ -22,6 +23,6 @@ export default function Intersection({row, col, color}) {
   }
 
   return (
-    <div onClick={() => handleClick(row, col)} className={classes} style={style}></div>
+    <div onClick={() => handleClick(row, col)} className={classes} style={style}/>
   )
 }

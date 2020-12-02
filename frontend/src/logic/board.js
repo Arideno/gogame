@@ -1,11 +1,15 @@
+/* eslint-disable no-loop-func */
 import _ from 'lodash'
 
 export default class Board {
   constructor(size) {
     this.size = size
     this.board = this.createBoard(size)
-    this.currentMoveBlack = true;
-    this.lastMovePass = false;
+    this.currentMoveBlack = true
+    this.lastMovePass = false
+    this.isEnd = false
+    this.moves = []
+    this.previousBoard = this.createBoard(size)
   }
 
   createBoard(size) {
@@ -13,7 +17,7 @@ export default class Board {
     for (let i = 0; i < size; i++) {
       b[i] = []
       for (let j = 0; j < size; j++) {
-        b[i][j] = "";
+        b[i][j] = ""
       }
     }
     return b
@@ -26,29 +30,34 @@ export default class Board {
   pass() {
     if (this.lastMovePass) {
       this.endGame()
+      this.moves.push("end")
     }
     this.lastMovePass = true
+    this.moves.push("pass")
     this.switchPlayer()
   }
 
   endGame() {
-    
+    this.moves.push("end")
+    this.isEnd = true
   }
 
-  move(i, j) {
+  isLegal(i, j) {
     if (this.board[i][j] !== "") {
       return false
     }
 
-    let color = this.board[i][j] = (this.currentMoveBlack ? "B" : "W")
+    let copy = JSON.parse(JSON.stringify(this.board))
+
+    let color = copy[i][j] = (this.currentMoveBlack ? "B" : "W")
     let captured = []
     let neighbors = this.getAdjacent(i, j)
 
     let self = this
     _.each(neighbors, function(n) {
-      let state = self.getGroup(n[0], n[1])
+      let state = self.getGroup(copy, n[0], n[1])
       if (state !== "" && state !== color) {
-        let group = self.getGroup(n[0], n[1])
+        let group = self.getGroup(copy, n[0], n[1])
         if (group) {
           if (group["liberties"] === 0) {
             captured.push(group)
@@ -57,10 +66,39 @@ export default class Board {
       }
     })
 
-    if (_.isEmpty(captured) && this.getGroup(i, j)["liberties"] === 0) {
-      this.board[i][j] = ""
+    if (_.isEmpty(captured) && this.getGroup(copy, i, j)["liberties"] === 0) {
       return false
     }
+
+    _.each(captured, function(group) {
+      _.each(group["stones"], function(stone) {
+          copy[stone[0]][stone[1]] = "";
+      })
+    })  
+
+    return JSON.stringify(this.previousBoard) !== JSON.stringify(copy);
+
+  }
+
+  move(i, j) {
+    this.previousBoard = JSON.parse(JSON.stringify(this.board))
+    
+    let color = this.board[i][j] = (this.currentMoveBlack ? "B" : "W")
+    let captured = []
+    let neighbors = this.getAdjacent(i, j)
+
+    let self = this
+    _.each(neighbors, function(n) {
+      let state = self.getGroup(self.board, n[0], n[1])
+      if (state !== "" && state !== color) {
+        let group = self.getGroup(self.board, n[0], n[1])
+        if (group) {
+          if (group["liberties"] === 0) {
+            captured.push(group)
+          }
+        }
+      }
+    })
 
     _.each(captured, function(group) {
       _.each(group["stones"], function(stone) {
@@ -70,7 +108,8 @@ export default class Board {
 
     this.lastMovePass = false
     this.switchPlayer()
-    return true
+
+    this.moves.push(`${String.fromCharCode(97 + i)}${String.fromCharCode(97 + j)}`)
   }
 
   getAdjacent(i, j) {
@@ -86,8 +125,8 @@ export default class Board {
     return neighbors;
   }
 
-  getGroup(i, j) {
-    let color = this.board[i][j]
+  getGroup(board, i, j) {
+    let color = board[i][j]
     if (color === "") {
       return null
     }
@@ -104,9 +143,8 @@ export default class Board {
       }
 
       let neighbors = this.getAdjacent(stone[0], stone[1])
-      let self = this
       _.each(neighbors, function(n) {
-        let state = self.board[n[0]][n[1]]
+        let state = board[n[0]][n[1]]
         if (state === "") {
           count++
         }
@@ -123,5 +161,21 @@ export default class Board {
       "liberties": count,
       "stones": visitedList
     }
+  }
+
+  setUpFromMoves(moves) {
+    this.board = this.createBoard(this.size)
+    const self = this
+    _.each(moves, function(m) {
+      if (m.length === 2) {
+        const i = m.charCodeAt(0) - 97
+        const j = m.charCodeAt(1) - 97
+        self.move(i, j)
+      } else if (m === "pass") {
+        self.pass()
+      } else if (m === "end") {
+        self.endGame()
+      }
+    })
   }
 }
