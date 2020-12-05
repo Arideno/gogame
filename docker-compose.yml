@@ -1,10 +1,31 @@
 version: "3"
 services:
-  client:
-    build: ./frontend
-    ports:
-      - "3000:80"
+#  client:
+#    build: ./frontend
+#    ports:
+#      - "3000:80"
   server:
     build: ./server
+    restart: always
+    volumes:
+      - ./server:/go/src/github.com/arideno/gogame
+    command: sh -c "go build . && ./gogame"
     ports:
       - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - DB_URL=postgres://postgres:postgres@db:5432/postgres?sslmode=disable
+      - SECRET_WORD=vfnbqxer
+  db:
+    image: postgres:13-alpine
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=postgres
+
+volumes:
+  pg_data:
