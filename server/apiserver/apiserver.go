@@ -7,7 +7,6 @@ import (
 	"github.com/arideno/gogame/utils"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	"log"
 	"net/http"
 	"os"
 	"time"
@@ -72,7 +71,6 @@ func (s *Server) configureRouter() error {
 		},
 		IdentityHandler: func(c *gin.Context) interface{} {
 			claims := jwt.ExtractClaims(c)
-			log.Println(claims)
 			return &model.User{
 				Id: int64(claims["id"].(float64)),
 			}
@@ -123,12 +121,13 @@ func (s *Server) configureRouter() error {
 		return err
 	}
 
-	s.router.POST("/login", authMiddleware.LoginHandler)
-	s.router.POST("/register", s.registerHandler())
+	s.router.POST("/auth/login", authMiddleware.LoginHandler)
+	s.router.POST("/auth/register", s.registerHandler())
 
-	auth := s.router.Group("/auth")
-	auth.Use(authMiddleware.MiddlewareFunc())
-	auth.GET("/kappa", s.kappaHandler())
+	api := s.router.Group("/api")
+	api.Use(authMiddleware.MiddlewareFunc())
+	api.GET("/profile", s.profileHandler())
+	api.POST("/password/change", s.changePasswordHandler())
 
 	return nil
 }
@@ -143,34 +142,89 @@ func (s *Server) registerHandler() gin.HandlerFunc {
 		credentials := userCredentials{}
 		if err := c.ShouldBindJSON(&credentials); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{
-				"error": err.Error(),
+				"message": "Provide username and password",
 			})
 			return
 		}
 
 		hashedPassword := utils.HashPassword(credentials.Password)
-		user, err := s.store.User().Create(&model.User{
+		_, err := s.store.User().Create(&model.User{
 			UserName: credentials.UserName,
 			Password: hashedPassword,
 		})
 
 		if err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{
-				"error": err.Error(),
+				"message": "Username is already in use",
 			})
 			return
 		}
 
 		c.JSON(http.StatusCreated, gin.H{
-			"id": user.Id,
+			"message": "User created",
 		})
 	}
 }
 
-func (s *Server) kappaHandler() gin.HandlerFunc {
+func (s *Server) profileHandler() gin.HandlerFunc {
 	return func(c *gin.Context) {
+		u, _ := c.Get("id")
+		user, err := s.store.User().FindById(u.(*model.User).Id)
+		if err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{
+				"message": err.Error(),
+			})
+			return
+		}
+
 		c.JSON(http.StatusOK, gin.H{
-			"message": "kappa",
+			"id":       user.Id,
+			"username": user.UserName,
+		})
+	}
+}
+
+func (s *Server) changePasswordHandler() gin.HandlerFunc {
+	type request struct {
+		OldPassword string `json:"oldPassword" binding:"required"`
+		NewPassword string `json:"newPassword" binding:"required"`
+	}
+
+	return func(c *gin.Context) {
+		var r request
+		if err := c.ShouldBindJSON(&r); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{
+				"message": err.Error(),
+			})
+			return
+		}
+
+		u, _ := c.Get("id")
+		user, err := s.store.User().FindById(u.(*model.User).Id)
+		if err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{
+				"message": "No such user",
+			})
+			return
+		}
+
+		if !utils.ComparePasswords(user.Password, r.OldPassword) {
+			c.JSON(http.StatusBadRequest, gin.H{
+				"message": "Passwords does not match",
+			})
+			return
+		}
+
+		hashedPassword := utils.HashPassword(r.NewPassword)
+		if err := s.store.User().UpdatePassword(&model.User{Id: user.Id, Password: hashedPassword}); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{
+				"message": "Error setting password",
+			})
+			return
+		}
+
+		c.JSON(http.StatusOK, gin.H{
+			"message": "Password successfully updated",
 		})
 	}
 }

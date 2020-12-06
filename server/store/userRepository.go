@@ -44,3 +44,11 @@ func (r *UserRepository) FindByUserName(userName string) (*model.User, error) {
 
 	return &user, nil
 }
+
+func (r *UserRepository) UpdatePassword(user *model.User) error {
+	if _, err := r.store.db.Exec("UPDATE users SET password = $1 WHERE id = $2", user.Password, user.Id); err != nil {
+		return err
+	}
+
+	return nil
+}
