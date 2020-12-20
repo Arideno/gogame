@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="08e6497a-fdd7-4a3c-b9b0-c4e6e6fa10c7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/GameHubInfo.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Hub.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/context/userContext.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/css/GameHubInfo.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/css/Hub.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/images/icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/routes.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/socket.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/model/client.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/model/game.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/model/hub.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/store/gameRepository.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/GoGame.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/GoGame.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Goban.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Goban.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Intersection.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Intersection.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Profile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Register.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Register.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/context/boardContext.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/css/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/css/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/css/Intersection.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/css/Intersection.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/logic/board.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/services/auth-header.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/services/auth.service.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/services/user.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/services/user.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/apiserver/apiserver.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/apiserver/apiserver.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/server/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/server/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/model/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/store/store.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/store/store.go" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="Go File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" path="/usr/local/go" />
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Andrii Moisol &lt;andrii.moisol@gmail.com&gt;" />
+        <option value="Andrii Moisol" />
+      </list>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SIGN_OFF_COMMIT" value="true" />
+  </component>
+  <component name="GoLibraries">
+    <option name="indexEntireGoPath" value="false" />
+  </component>
+  <component name="ProjectId" id="1l6sjzgIcvWb9m046eYOwKRwwzU" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="postgresql" />
+    <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="go.sdk.automatically.set" value="true" />
+    <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="go.vgo" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/src/images" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Docker.docker-compose.yml: Compose Deployment">
+    <configuration name="go build github.com/arideno/gogame" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="gogame" />
+      <working_directory value="$PROJECT_DIR$/server" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/server/main.go" />
+      <package value="github.com/arideno/gogame" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+      <item itemvalue="Go Build.go build github.com/arideno/gogame" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+        <item itemvalue="Go Build.go build github.com/arideno/gogame" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add Ko rule" />
+    <MESSAGE value="Add jwt login." />
+    <MESSAGE value="Add login to frontend" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add login to frontend" />
+  </component>
+  <component name="VgoProject">
+    <integration-enabled>true</integration-enabled>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="184" y="75" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607189847982">
+      <screen x="0" y="25" width="1440" height="786" />
+    </state>
+    <state x="184" y="75" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1440.786@0.25.1440.786" timestamp="1607189847982" />
+    <state x="458" y="165" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1607443101471">
+      <screen x="0" y="25" width="1440" height="779" />
+    </state>
+    <state x="458" y="165" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1440.779@0.25.1440.779" timestamp="1607443101471" />
+    <state x="304" y="25" key="CommitChangelistDialog2" timestamp="1607274430691">
+      <screen x="0" y="25" width="1440" height="783" />
+    </state>
+    <state x="304" y="25" key="CommitChangelistDialog2/0.25.1440.774@0.25.1440.774" timestamp="1606929095732" />
+    <state x="304" y="25" key="CommitChangelistDialog2/0.25.1440.783@0.25.1440.783" timestamp="1607274430691" />
+    <state x="304" y="25" key="CommitChangelistDialog2/0.25.1440.786@0.25.1440.786" timestamp="1607205493275" />
+    <state width="1398" height="196" key="GridCell.Tab.0.bottom" timestamp="1607522695999">
+      <screen x="0" y="25" width="1440" height="783" />
+    </state>
+    <state width="1398" height="196" key="GridCell.Tab.0.bottom/0.25.1440.779@0.25.1440.779" timestamp="1607279313107" />
+    <state width="1398" height="196" key="GridCell.Tab.0.bottom/0.25.1440.783@0.25.1440.783" timestamp="1607522695999" />
+    <state width="958" height="256" key="GridCell.Tab.0.bottom/0.25.1440.786@0.25.1440.786" timestamp="1607189906944" />
+    <state width="1398" height="196" key="GridCell.Tab.0.center" timestamp="1607522695997">
+      <screen x="0" y="25" width="1440" height="783" />
+    </state>
+    <state width="1398" height="196" key="GridCell.Tab.0.center/0.25.1440.779@0.25.1440.779" timestamp="1607279313106" />
+    <state width="1398" height="196" key="GridCell.Tab.0.center/0.25.1440.783@0.25.1440.783" timestamp="1607522695997" />
+    <state width="958" height="256" key="GridCell.Tab.0.center/0.25.1440.786@0.25.1440.786" timestamp="1607189906943" />
+    <state width="1398" height="196" key="GridCell.Tab.0.left" timestamp="1607522695994">
+      <screen x="0" y="25" width="1440" height="783" />
+    </state>
+    <state width="1398" height="196" key="GridCell.Tab.0.left/0.25.1440.779@0.25.1440.779" timestamp="1607279313106" />
+    <state width="1398" height="196" key="GridCell.Tab.0.left/0.25.1440.783@0.25.1440.783" timestamp="1607522695994" />
+    <state width="958" height="256" key="GridCell.Tab.0.left/0.25.1440.786@0.25.1440.786" timestamp="1607189906943" />
+    <state width="1398" height="196" key="GridCell.Tab.0.right" timestamp="1607522695998">
+      <screen x="0" y="25" width="1440" height="783" />
+    </state>
+    <state width="1398" height="196" key="GridCell.Tab.0.right/0.25.1440.779@0.25.1440.779" timestamp="1607279313107" />
+    <state width="1398" height="196" key="GridCell.Tab.0.right/0.25.1440.783@0.25.1440.783" timestamp="1607522695998" />
+    <state width="958" height="256" key="GridCell.Tab.0.right/0.25.1440.786@0.25.1440.786" timestamp="1607189906944" />
+    <state x="229" y="48" key="SettingsEditor" timestamp="1608405398845">
+      <screen x="0" y="25" width="1440" height="783" />
+    </state>
+    <state x="229" y="48" key="SettingsEditor/0.25.1440.774@0.25.1440.774" timestamp="1606929158711" />
+    <state x="229" y="48" key="SettingsEditor/0.25.1440.783@0.25.1440.783" timestamp="1608405398845" />
+    <state x="229" y="48" key="SettingsEditor/0.25.1440.786@0.25.1440.786" timestamp="1607206270374" />
+    <state x="320" y="138" key="Vcs.Push.Dialog.v2" timestamp="1607274435893">
+      <screen x="0" y="25" width="1440" height="783" />
+    </state>
+    <state x="320" y="136" key="Vcs.Push.Dialog.v2/0.25.1440.774@0.25.1440.774" timestamp="1606929098286" />
+    <state x="320" y="138" key="Vcs.Push.Dialog.v2/0.25.1440.783@0.25.1440.783" timestamp="1607274435893" />
+    <state x="320" y="138" key="Vcs.Push.Dialog.v2/0.25.1440.786@0.25.1440.786" timestamp="1607205516182" />
+    <state x="421" y="170" width="597" height="551" key="find.popup" timestamp="1607512002292">
+      <screen x="0" y="25" width="1440" height="783" />
+    </state>
+    <state x="421" y="169" width="597" height="548" key="find.popup/0.25.1440.779@0.25.1440.779" timestamp="1607437992816" />
+    <state x="421" y="170" width="597" height="551" key="find.popup/0.25.1440.783@0.25.1440.783" timestamp="1607512002292" />
+    <state x="385" y="135" width="670" height="58" key="search.everywhere.popup" timestamp="1608459578269">
+      <screen x="0" y="25" width="1440" height="783" />
+    </state>
+    <state x="385" y="134" width="670" height="671" key="search.everywhere.popup/0.25.1440.779@0.25.1440.779" timestamp="1607437711405" />
+    <state x="385" y="135" width="670" height="58" key="search.everywhere.popup/0.25.1440.783@0.25.1440.783" timestamp="1608459578269" />
+    <state x="385" y="135" width="670" height="676" key="search.everywhere.popup/0.25.1440.786@0.25.1440.786" timestamp="1607356266311" />
+  </component>
+</project>

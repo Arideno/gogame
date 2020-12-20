@@ -1,0 +1,26 @@
+.game {
+    margin-left: 100px;
+    margin-bottom: 10px;
+}
+
+.board {
+    position: relative;
+}
+
+.size {
+    width: 100px;
+    height: 60px;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.size h3 {
+    margin-top: 5px;
+}

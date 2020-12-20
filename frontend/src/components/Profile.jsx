@@ -1,8 +1,10 @@
-import React, {useEffect, useRef, useState} from "react"
+import React, {useContext, useEffect, useRef, useState} from "react"
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import Form from "react-validation/build/form";
 import UserService from "../services/user.service";
+import {UserContext} from "../context/userContext";
+import '../css/Profile.css'
 
 const required = (value) => {
     if (!value) {
@@ -35,6 +37,7 @@ const passwordMatch = (value, props, components) => {
 }
 
 const Profile = () => {
+    const {userInfo, token} = useContext(UserContext)
     const [username, setUsername] = useState("")
     const form = useRef()
     const checkBtn = useRef()
@@ -46,15 +49,10 @@ const Profile = () => {
     const [successful, setSuccessful] = useState(false)
 
     useEffect(() => {
-        UserService.getProfile().then(
-            response => {
-                setUsername(response.data.username)
-            },
-            error => {
-                console.log(error)
-            }
-        )
-    }, [])
+        if (userInfo) {
+            setUsername(userInfo.username)
+        }
+    }, [userInfo])
 
     const onChangeOldPassword = (e) => {
         const password = e.target.value
@@ -81,7 +79,7 @@ const Profile = () => {
         form.current.validateAll()
 
         if (checkBtn.current.context._errors.length === 0) {
-            UserService.changePassword(oldPassword, newPassword).then(
+            UserService.changePassword(oldPassword, newPassword, token).then(
                 (response) => {
                     setMessage(response.data.message)
                     setLoading(false)
@@ -109,7 +107,7 @@ const Profile = () => {
     }
 
     return (
-        <div className="container">
+        <div className="container mt-3">
             <header className="jumbotron">
                 <h3>
                     Profile
@@ -150,7 +148,7 @@ const Profile = () => {
                         validations={[required, vpassword]}
                     />
                 </div>
-                <div className="form-group">
+                <div className="form-group mt-4">
                     <button className="btn btn-primary btn-block" disabled={loading}>
                         {loading && (
                             <span className="spinner-border spinner-border-sm"/>

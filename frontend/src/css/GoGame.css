@@ -1,0 +1,50 @@
+.players {
+  display: flex;
+}
+
+.player-container {
+  width: 200px;
+  height: 100px;
+  color: #888;
+  position: relative;
+}
+
+.player-container:last-child {
+  margin-left: 20px;
+}
+
+.player-container.black {
+  background: linear-gradient(180deg,#7d7d7d 0,#333 50%,#0c0c0c);
+}
+
+.player-container.white {
+  background: linear-gradient(180deg,#888 0,#efefef 50%,#efefef);
+}
+
+.player-container .player_name {
+  left: 5px;
+  top: 5px;
+  position: absolute;
+}
+
+.player-container .stones {
+  left: 5px;
+  bottom: 5px;
+  position: absolute;
+}
+
+.player-container.black .stones {
+  color: #bbb;
+}
+
+.player-container.white .stones {
+  color: #131313;
+}
+
+.moves-container {
+  color: white;
+}
+
+.moves {
+  word-wrap: break-word;
+}

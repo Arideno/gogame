@@ -1,0 +1,48 @@
+.game-container {
+  margin-left: 100px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.game-container .board {
+  padding: 20px;
+}
+
+.game-container:hover {
+  background-color: #488689;
+}
+
+.title-white {
+  top: -4px;
+}
+
+.title-black {
+  bottom: -4px;
+}
+
+.title-white, .title-black {
+  color: white;
+  font-size: 18px;
+  position: absolute;
+  left: 20px;
+  right: 20px;
+}
+
+.score {
+  position: absolute;
+  font-size: .9em;
+}
+
+.title-black .score {
+  bottom: 2em;
+  right: 0;
+  transform-origin: 100% 100%;
+  transform: rotate(90deg);
+}
+
+.title-white .score {
+  top: 2em;
+  left: 3px;
+  transform-origin: 0 0;
+  transform: rotate(90deg);
+}

@@ -1,26 +1,47 @@
-import React, { useContext } from 'react'
-import { BoardContext } from '../context/boardContext'
+import React  from 'react'
 import '../css/Intersection.css'
 
-export default function Intersection({row, col, i, j, color}) {
-  const {board, onMove} = useContext(BoardContext)
-
+export default function Intersection({row, col, i, j, color, board, move, playable, playableColor, size, isLegal, currentMoveBlack, isLast}) {
   const handleClick = (i, j) => {
-    console.log(i, j)
-    if (board.isLegal(i, j)) {
-      board.move(i, j)
-      onMove()
+    if (playable) {
+      if ((playableColor === "B" && currentMoveBlack) || (playableColor === "W" && !currentMoveBlack)) {
+        if (isLegal(i, j)) {
+          move(i, j)
+        }
+      }
     }
   }
 
   const style = {
-    top: row * 40,
-    left: col * 40
+    top: row * size,
+    left: col * size,
+    width: size,
+    height: size,
+    borderRadius: size / 2,
   }
 
   let classes = "intersection"
-  if (color !== "") {
+  if (color !== " ") {
     classes += ` ${color === "W" ? "white" : "black"}`
+    if (isLast) {
+      classes += ' last'
+    }
+  }
+
+  if (col === 0) {
+    classes += " no-left"
+  }
+
+  if (col === board.length - 1) {
+    classes += " no-right"
+  }
+
+  if (row === 0) {
+    classes += " no-top"
+  }
+
+  if (row === board.length - 1) {
+    classes += " no-bottom"
   }
 
   return (

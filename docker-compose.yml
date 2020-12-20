@@ -17,6 +17,7 @@ services:
       - redis
     environment:
       - DB_URL=postgres://postgres:postgres@db:5432/postgres?sslmode=disable
+      - REDIS_ADDR=redis:6379
       - SECRET_WORD=vfnbqxer
   db:
     image: postgres:13-alpine

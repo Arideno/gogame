@@ -2,8 +2,7 @@ import React, { useState, useRef } from "react";
 import Form from "react-validation/build/form"
 import Input from "react-validation/build/input"
 import CheckButton from "react-validation/build/button"
-
-import AuthService from "../services/auth.service"
+import { useHttp } from "../hooks/http.hook";
 
 const required = (value) => {
     if (!value) {
@@ -36,6 +35,8 @@ const vpassword = (value) => {
 }
 
 const Register = (props) => {
+    const { request } = useHttp()
+
     const form = useRef()
     const checkBtn = useRef()
 
@@ -63,9 +64,11 @@ const Register = (props) => {
         form.current.validateAll()
 
         if (checkBtn.current.context._errors.length === 0) {
-            AuthService.register(username, password).then(
-                (response) => {
-                    setMessage(response.data.message)
+            request('http://localhost:8080/auth/register', 'POST', {
+                username, password
+            }).then(
+                (data) => {
+                    setMessage(data.message)
                     setSuccessful(true)
                 },
                 (error) => {
@@ -84,59 +87,61 @@ const Register = (props) => {
     };
 
     return (
-        <div className="col-md-12">
-            <div className="card card-container">
-                <img
-                    src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-                    alt="profile-img"
-                    className="profile-img-card"
-                />
+        <div className="container mt-3">
+            <div className="col-md-12">
+                <div className="card card-container">
+                    <img
+                        src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+                        alt="profile-img"
+                        className="profile-img-card"
+                    />
 
-                <Form onSubmit={handleRegister} ref={form}>
-                    {!successful && (
-                        <div>
+                    <Form onSubmit={handleRegister} ref={form}>
+                        {!successful && (
+                            <div>
+                                <div className="form-group">
+                                    <label htmlFor="username" style={{color: 'black'}}>Username</label>
+                                    <Input
+                                        type="text"
+                                        className="form-control"
+                                        name="username"
+                                        value={username}
+                                        onChange={onChangeUsername}
+                                        validations={[required, vusername]}
+                                    />
+                                </div>
+
+                                <div className="form-group">
+                                    <label htmlFor="password" style={{color: 'black'}}>Password</label>
+                                    <Input
+                                        type="password"
+                                        className="form-control"
+                                        name="password"
+                                        value={password}
+                                        onChange={onChangePassword}
+                                        validations={[required, vpassword]}
+                                    />
+                                </div>
+
+                                <div className="form-group mt-4">
+                                    <button className="btn btn-primary btn-block">Sign Up</button>
+                                </div>
+                            </div>
+                        )}
+
+                        {message && (
                             <div className="form-group">
-                                <label htmlFor="username">Username</label>
-                                <Input
-                                    type="text"
-                                    className="form-control"
-                                    name="username"
-                                    value={username}
-                                    onChange={onChangeUsername}
-                                    validations={[required, vusername]}
-                                />
+                                <div
+                                    className={ successful ? "alert alert-success" : "alert alert-danger" }
+                                    role="alert"
+                                >
+                                    {message}
+                                </div>
                             </div>
-
-                            <div className="form-group">
-                                <label htmlFor="password">Password</label>
-                                <Input
-                                    type="password"
-                                    className="form-control"
-                                    name="password"
-                                    value={password}
-                                    onChange={onChangePassword}
-                                    validations={[required, vpassword]}
-                                />
-                            </div>
-
-                            <div className="form-group">
-                                <button className="btn btn-primary btn-block">Sign Up</button>
-                            </div>
-                        </div>
-                    )}
-
-                    {message && (
-                        <div className="form-group">
-                            <div
-                                className={ successful ? "alert alert-success" : "alert alert-danger" }
-                                role="alert"
-                            >
-                                {message}
-                            </div>
-                        </div>
-                    )}
-                    <CheckButton style={{ display: "none" }} ref={checkBtn} />
-                </Form>
+                        )}
+                        <CheckButton style={{ display: "none" }} ref={checkBtn} />
+                    </Form>
+                </div>
             </div>
         </div>
     );

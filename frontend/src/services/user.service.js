@@ -1,20 +1,19 @@
 import axios from 'axios'
-import authHeader from "./auth-header"
 
 const API_URL = 'http://localhost:8080/api/'
 
 class UserService {
-    getProfile() {
-        return axios.get(API_URL + 'profile', {
-            headers: authHeader(),
+    getProfile(token) {
+        return axios.get(API_URL + 'profile', { 
+            headers: {Authorization: 'Bearer ' + token}
         })
     }
 
-    changePassword(oldPassword, newPassword) {
+    changePassword(oldPassword, newPassword, token) {
         return axios.post(API_URL + 'password/change', {
             oldPassword, newPassword
         }, {
-            headers: authHeader(),
+            headers: {Authorization: 'Bearer ' + token}
         })
     }
 }
