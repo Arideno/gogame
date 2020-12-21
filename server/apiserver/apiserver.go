@@ -13,6 +13,9 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"os/exec"
+	"strconv"
+	"strings"
 	"time"
 )
 
@@ -552,6 +555,92 @@ func (s *Server) reader(client *model.Client) {
 					c.Send <- response1
 				}
 				c.Send <- response2
+			}
+		case "game_end_pass":
+			gameId := j.Data["gameId"].(string)
+			game := s.store.Game().GetById(gameId)
+
+			position := ""
+			for i, c := range game.Position {
+				if c == ' ' {
+					position += "0"
+				} else if c == 'W' {
+					position += "-1"
+				} else if c == 'B' {
+					position += "1"
+				}
+				if i != len(game.Position) - 1 {
+					position += ","
+				}
+			}
+			playerToMove := ""
+			if game.BlackToMove == 1 {
+				playerToMove = "1"
+			} else {
+				playerToMove = "-1"
+			}
+			c := exec.Command("python3", "/go/src/github.com/arideno/gogame/ogs_estimator.py", position, playerToMove)
+			out, _ := c.Output()
+
+			score, _ := strconv.Atoi(strings.TrimSuffix(string(out), "\n"))
+
+			blackScore := game.BlackPoints
+			whiteScore := game.WhitePoints
+
+			if score > 0 {
+				blackScore += score
+			} else {
+				whiteScore -= float64(score)
+			}
+
+			gameResult := 0
+
+			if float64(blackScore) > whiteScore {
+				gameResult = 1
+			} else {
+				gameResult = -1
+			}
+
+			s.store.Game().SetWinner(gameId, gameResult, blackScore, whiteScore)
+
+			response := gin.H{
+				"type": "winner",
+				"data": map[string]interface{}{
+					"gameId": gameId,
+					"winner": gameResult,
+					"blackPoints": blackScore,
+					"whitePoints": whiteScore,
+				},
+			}
+
+			for c := range s.mainHub.Clients {
+				c.Send <- response
+			}
+		case "game_end_resign":
+			gameId := j.Data["gameId"].(string)
+			game := s.store.Game().GetById(gameId)
+
+			gameResult := 0
+			if game.BlackPlayer.Id == client.User.Id {
+				gameResult = -1
+			} else {
+				gameResult = 1
+			}
+
+			s.store.Game().SetWinner(gameId, gameResult, game.BlackPoints, game.WhitePoints)
+
+			response := gin.H{
+				"type": "winner",
+				"data": map[string]interface{}{
+					"gameId": gameId,
+					"winner": gameResult,
+					"blackPoints": game.BlackPoints,
+					"whitePoints": game.WhitePoints,
+				},
+			}
+
+			for c := range s.mainHub.Clients {
+				c.Send <- response
 			}
 		}
 	}

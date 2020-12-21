@@ -5,41 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="08e6497a-fdd7-4a3c-b9b0-c4e6e6fa10c7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/GameHubInfo.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Hub.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/context/userContext.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/css/GameHubInfo.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/css/Hub.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/images/icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/routes.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/socket.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/model/client.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/model/game.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/model/hub.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/store/gameRepository.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/nginx/nginx.conf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/ogs_estimator.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/score_estimator.so" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/GameHubInfo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/GameHubInfo.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/GoGame.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/GoGame.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Goban.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Goban.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Intersection.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Intersection.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Login.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Profile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Register.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Register.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/context/boardContext.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Hub.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Hub.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/css/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/css/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/css/Intersection.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/css/Intersection.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/logic/board.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/services/auth-header.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/services/auth.service.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/services/user.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/services/user.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/css/GoGame.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/css/GoGame.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/server/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/apiserver/apiserver.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/apiserver/apiserver.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/server/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/server/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/model/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/store/store.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/store/store.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/gogame" beforeDir="false" afterPath="$PROJECT_DIR$/server/gogame" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/model/game.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/game.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/model/hub.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/hub.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/store/gameRepository.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/store/gameRepository.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,14 +67,18 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/server" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="go.vgo" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/server" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/server" />
       <recent name="$PROJECT_DIR$/frontend/src/images" />
     </key>
   </component>
@@ -108,6 +95,7 @@
     <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
+          <option name="commandLineOptions" value="--build" />
           <option name="sourceFilePath" value="docker-compose.yml" />
         </settings>
       </deployment>
@@ -138,9 +126,10 @@
     <integration-enabled>true</integration-enabled>
   </component>
   <component name="WindowStateProjectService">
-    <state x="184" y="75" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607189847982">
-      <screen x="0" y="25" width="1440" height="786" />
+    <state x="184" y="75" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1608491711255">
+      <screen x="0" y="25" width="1440" height="783" />
     </state>
+    <state x="184" y="75" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1440.783@0.25.1440.783" timestamp="1608491711255" />
     <state x="184" y="75" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1440.786@0.25.1440.786" timestamp="1607189847982" />
     <state x="458" y="165" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1607443101471">
       <screen x="0" y="25" width="1440" height="779" />

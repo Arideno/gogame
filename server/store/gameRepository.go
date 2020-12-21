@@ -26,6 +26,7 @@ func (r *GameRepository) Create(game *model.Game) error {
 		"blackToMove": 1,
 		"blackPoints": 0,
 		"whitePoints": 6.5,
+		"winner": 0,
 	}).Err()
 }
 
@@ -82,6 +83,7 @@ func (r *GameRepository) GetById(id string) *model.Game {
 	blackToMove, _ := strconv.Atoi(result["blackToMove"])
 	blackPoints, _ := strconv.Atoi(result["blackPoints"])
 	whitePoints, _ := strconv.ParseFloat(result["whitePoints"], 64)
+	winner, _ := strconv.Atoi(result["winner"])
 
 	return &model.Game{
 		Id: id,
@@ -99,6 +101,7 @@ func (r *GameRepository) GetById(id string) *model.Game {
 		BlackToMove: blackToMove,
 		BlackPoints: blackPoints,
 		WhitePoints: whitePoints,
+		Winner: winner,
 	}
 }
 
@@ -118,6 +121,10 @@ func (r *GameRepository) GetAll() []*model.Game {
 		blackToMove, _ := strconv.Atoi(result["blackToMove"])
 		blackPoints, _ := strconv.Atoi(result["blackPoints"])
 		whitePoints, _ := strconv.ParseFloat(result["whitePoints"], 64)
+		winner, _ := strconv.Atoi(result["winner"])
+		if winner != 0 {
+			continue
+		}
 
 		games = append(games, &model.Game{
 			Id: id,
@@ -139,4 +146,8 @@ func (r *GameRepository) GetAll() []*model.Game {
 	}
 
 	return games
+}
+
+func (r *GameRepository) SetWinner(id string, winner int, blackPoints int, whitePoints float64) {
+	r.store.rdb.HSet(ctx, id, "winner", winner, "blackPoints", blackPoints, "whitePoints", whitePoints)
 }

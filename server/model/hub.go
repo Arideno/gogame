@@ -69,9 +69,11 @@ func (h *Hub) GetWaitingGames() []*Game {
 func (h *Hub) GetCurrentGames(user *User, allGames []*Game) []*Game {
 	games := make([]*Game, 0)
 	for _, g := range allGames {
-		if g.BlackPlayer != nil && g.WhitePlayer != nil {
-			if g.BlackPlayer.Id == user.Id || g.WhitePlayer.Id == user.Id {
-				games = append(games, g)
+		if g.Winner == 0 {
+			if g.BlackPlayer != nil && g.WhitePlayer != nil {
+				if g.BlackPlayer.Id == user.Id || g.WhitePlayer.Id == user.Id {
+					games = append(games, g)
+				}
 			}
 		}
 	}

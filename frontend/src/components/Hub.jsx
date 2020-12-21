@@ -73,7 +73,7 @@ const Hub = () => {
     return (
         <div className="container-fluid mt-3">
         <div aria-live="polite" aria-atomic="true" className="position-relative">
-            <div className="toast-container position-absolute p-3 top-0 right-0">
+            <div className="toast-container position-absolute p-3" style={{top: 0, right: 0}}>
                 <div ref={toastEl} className="toast">
                     <div className="toast-header">
                         <img src={logo} className="rounded mr-2" alt="Go" style={{width: 20, height: 20}}/>
@@ -86,13 +86,13 @@ const Hub = () => {
                     </div>
                 </div>
             </div>
-            <div className="modal fade" id="createModal" tabIndex="-1" aria-labelledby="createModalLabel"
-                 aria-hidden="true">
+            <div className="modal fade" id="createModal" aria-labelledby="createModalLabel"
+                 aria-hidden="true" style={{color: 'black'}}>
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title" id="createModalLabel">Create new game</h5>
-                            <button type="button" className="btn-close" data-dismiss="modal"
+                            <button type="button" className="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"/>
                         </div>
                         <div className="modal-body">
@@ -117,15 +117,15 @@ const Hub = () => {
                             </form>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button type="button" className="btn btn-primary" onClick={handleCreate}
-                                    data-dismiss="modal">Create
+                                    data-bs-dismiss="modal">Create
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
-            <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#createModal">
+            <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
                 Create
             </button>
             <div className="games">

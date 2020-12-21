@@ -9,14 +9,16 @@ const GameHubInfo = ({ game, onAccept }) => {
     const [disable, setDisable] = useState(false)
 
     useEffect(() => {
-        if (game.black_player) {
-            if (userInfo.id === game.black_player.id) {
-                setDisable(true)
+        if (userInfo) {
+            if (game.black_player) {
+                if (userInfo.id === game.black_player.id) {
+                    setDisable(true)
+                }
             }
-        }
-        if (game.white_player) {
-            if (userInfo.id === game.white_player.id) {
-                setDisable(true)
+            if (game.white_player) {
+                if (userInfo.id === game.white_player.id) {
+                    setDisable(true)
+                }
             }
         }
     }, [userInfo, game])

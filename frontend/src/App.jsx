@@ -23,7 +23,7 @@ const App = () => {
         <Router history={history}>
             <UserContext.Provider value={{userInfo, login, logout, token, isAuthenticated, socket}}>
                 <nav className="navbar navbar-expand navbar-dark" style={{backgroundColor: '#252525'}}>
-                    <Link to={isAuthenticated ? "/" : "/login"} className="navbar-brand ml-4">
+                    <Link to={isAuthenticated ? "/" : "/login"} className="navbar-brand ms-4">
                         Go Game
                     </Link>
                     <div className="navbar-nav mr-auto">

@@ -10,4 +10,5 @@ type Game struct {
 	BlackToMove int `json:"black_to_move"`
 	BlackPoints int `json:"black_points"`
 	WhitePoints float64 `json:"white_points"`
+	Winner int `json:"winner"`
 }

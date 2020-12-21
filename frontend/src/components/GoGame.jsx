@@ -39,14 +39,44 @@ const GoGame = () => {
         setCurrentMoveBlack(!currentMoveBlack)
     }
 
-    const pass = () => {
+    const endGame = (resign = false, my = false) => {
+        setIsEnd(true)
+        
+        if (my) {
+            if (resign) {
+                socket.send(JSON.stringify({
+                    type: "game_end_resign",
+                    data: {
+                        gameId: id
+                    }
+                }))
+                return
+            }
+    
+            socket.send(JSON.stringify({
+                type: "game_end_pass",
+                data: {
+                    gameId: id
+                }
+            }))   
+        }
+    }
+
+    const pass = (my = true) => {
+        let end = false
         if (lastMovePass) {
-            console.log("end")
-            setMoves([...moves, "end"])
+            endGame(false, my)
+            end = true
         }
         setLastMovePass(true)
         setMoves([...moves, "pass"])
         switchPlayer()
+
+        if (my && !end) {
+            onMove(board, "pass", blackPoints, whitePoints)
+        }
+
+        setLastMove(null)
     }
 
     const isLegal = (i, j) => {
@@ -197,10 +227,14 @@ const GoGame = () => {
 
     const makeMove = moves => {
         const m = moves.split(',')
+        if (m[m.length-1] === "pass") {
+            pass(false)
+            return
+        }
         move(m[m.length-1].charCodeAt(0) - 97, m[m.length-1].charCodeAt(1) - 97, false)
     }
 
-    const setupFromPosition = (board, position, blackToMove, moves, blackPoints, whitePoints) => {
+    const setupFromPosition = (board, position, blackToMove, moves, blackPoints, whitePoints, winner) => {
         let copy = JSON.parse(JSON.stringify(board))
         for (let i = 0; i < board.length; i++) {
             for (let j = 0; j < board.length; j++) {
@@ -208,11 +242,23 @@ const GoGame = () => {
             }
         }
         setBoard(copy)
-        setMoves(moves)
+        if (moves[0] !== "") {
+            setMoves(moves)
+        } else {
+            setMoves([])
+        }
         setLastMove(moves.length > 0 ? moves[moves.length - 1] : null)
         setCurrentMoveBlack(blackToMove === 1)
         setBlackPoints(blackPoints)
         setWhitePoints(whitePoints)
+        console.log(winner)
+        if (winner === 1) {
+            setBlackName(name => name + "🏆")
+            setIsEnd(true)
+        } else if (winner === -1) {
+            setWhiteName(name => name + "🏆")
+            setIsEnd(true)
+        }
     }
 
     const receive = event => {
@@ -231,10 +277,20 @@ const GoGame = () => {
                 }
                 setBlackName(data.data.game.black_player.username)
                 setWhiteName(data.data.game.white_player.username)
-                setupFromPosition(Array(data.data.game.size).fill().map(() => Array(data.data.game.size).fill(" ")), data.data.game.position, data.data.game.black_to_move, data.data.game.moves, data.data.game.black_points, data.data.game.white_points)
+                setupFromPosition(Array(data.data.game.size).fill().map(() => Array(data.data.game.size).fill(" ")), data.data.game.position, data.data.game.black_to_move, data.data.game.moves, data.data.game.black_points, data.data.game.white_points, data.data.game.winner)
             } else if (data.type === "make_move") {
                 if (data.data.gameId === id) {
                     makeMove(data.data.moves)
+                }
+            } else if (data.type === "winner") {
+                if (data.data.gameId === id) {
+                    setBlackPoints(data.data.blackPoints)
+                    setWhitePoints(data.data.whitePoints)
+                    if (data.data.winner === 1) {
+                        setBlackName(name => name + "🏆")
+                    } else {
+                        setWhiteName(name => name + "🏆")
+                    }
                 }
             }
         }
@@ -287,8 +343,8 @@ const GoGame = () => {
         return (
             <div className="container-fluid mt-3">
             <div className="row mt-5">
-                <div className="col-xl-7 col-12 d-flex justify-content-xl-start justify-content-center mb-xl-0 mb-4">
-                    <Goban board={board} move={move} isLegal={isLegal}
+                <div className="offset-xl-1 col-xl-6 col-12 d-flex justify-content-xl-start justify-content-center mb-xl-0 mb-4">
+                    <Goban board={board} move={!isEnd ? move : () => {}} isLegal={isLegal}
                         size={30 * (19 / board.length)} playableColor={playableColor} reversed={playableColor === "W"} playable={true} currentMoveBlack={currentMoveBlack} lastMove={lastMove} />
                 </div>
                 <div className="col-xl-5 col-12">
@@ -302,12 +358,19 @@ const GoGame = () => {
                             <h4 className="stones">Stones: {whitePoints}</h4>
                         </div>
                     </div>
+                    {
+                        ((currentMoveBlack && playableColor  === "B") || (!currentMoveBlack && playableColor  === "W")) && !isEnd &&
+                        <div className="action-buttons mt-3">
+                            <div className="btn btn-primary pass" onClick={() => pass()}>Pass</div>
+                            <div className="btn btn-danger resign" onClick={() => endGame(true, true)}>Resign</div>
+                        </div>
+                    }
                     <div className="moves-container mt-4">
                         <h2>Moves made:</h2>
                         <div className="moves">
-                            {moves.map((m, i) => (
+                            {moves.length > 0 ? moves.map((m, i) => (
                                 `${i + 1}. ${m}` + (i !== moves.length - 1 ? ', ' : '')
-                            ))}
+                            )) : 'No moves made yet'}
                         </div>
                     </div>
                 </div>
