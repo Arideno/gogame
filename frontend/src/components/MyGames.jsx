@@ -38,9 +38,15 @@ const MyGames = () => {
 
   return (
     <div className="container-fluid mt-3">
-    <div className="games">
-      {gameList}
-    </div>
+      {
+        gameList.length > 0 ? 
+        <div className="games">
+          {gameList}
+        </div>
+        :
+        <h2>No games</h2>
+      }
+      
     </div>
   )
 
